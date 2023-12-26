@@ -31,7 +31,11 @@ function App() {
   }
 
   function handleButtonClick(color:string){
-
+    if(color === correctColor){
+      setStatus('Correct!')
+      makeGameOptions()
+    }
+    else setStatus('Wrong Answer')
   }
 
   useEffect(() => {
@@ -45,9 +49,11 @@ function App() {
 
         </div>
         <p>{status}</p>
+        <div className='button-container'>
         {colorOptions?.map((color) => (
           <button onClick={() => handleButtonClick(color)}>{color}</button>
         ))}
+        </div>
       </div>
     </>
   )
