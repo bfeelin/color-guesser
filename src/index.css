@@ -69,11 +69,17 @@ button:focus-visible {
 
 .container{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .box{
-  height: 30vw;
+  height: 15vw;
   width: 30vh;
+}
+
+.button-container{
+  display: flex;
+  gap: 10px;
 }
