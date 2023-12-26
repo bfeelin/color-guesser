@@ -1,6 +1,6 @@
 # Color Guessing Problem
 
-Display three buttons containg hex codes of colors
+Display three buttons containing hex codes of colors
 Display a box which contains the color of one of the buttons
 Click the correct color to win the game!
 
