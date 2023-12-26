@@ -1,33 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
 
+const noColorOptions = 3;
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [colorOptions, setColorOptions] = useState<Array<string>>([])
+  const [correctColor, setCorrectColor] = useState<string>("")
+
+  function getRandomInt(max:number) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const generatePastelColor = () => {
+    let R = Math.floor((Math.random() * 127) + 127);
+    let G = Math.floor((Math.random() * 127) + 127);
+    let B = Math.floor((Math.random() * 127) + 127);
+    
+    let rgb = (R << 16) + (G << 8) + B;
+    return `#${rgb.toString(16)}`;      
+  }
+
+  function makeGameOptions(){
+    let opts = []
+    for(let i = 0; i < noColorOptions; i++){
+      opts.push(generatePastelColor())
+    }
+    setColorOptions(opts)
+    setCorrectColor(opts[getRandomInt(noColorOptions)])
+  }
+
+  useEffect(() => {
+    makeGameOptions()
+  }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='container'>
+        <div className='box' style={{backgroundColor: `${correctColor}`}}>
+
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
