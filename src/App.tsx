@@ -6,6 +6,7 @@ const noColorOptions = 3;
 function App() {
   const [colorOptions, setColorOptions] = useState<Array<string>>([])
   const [correctColor, setCorrectColor] = useState<string>("")
+  const [status, setStatus] = useState<string>("")
 
   function getRandomInt(max:number) {
     return Math.floor(Math.random() * max);
@@ -29,6 +30,10 @@ function App() {
     setCorrectColor(opts[getRandomInt(noColorOptions)])
   }
 
+  function handleButtonClick(color:string){
+
+  }
+
   useEffect(() => {
     makeGameOptions()
   }, [])
@@ -39,6 +44,10 @@ function App() {
         <div className='box' style={{backgroundColor: `${correctColor}`}}>
 
         </div>
+        <p>{status}</p>
+        {colorOptions?.map((color) => (
+          <button onClick={() => handleButtonClick(color)}>{color}</button>
+        ))}
       </div>
     </>
   )
